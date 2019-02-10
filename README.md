@@ -33,6 +33,6 @@ Copy the ac-gema-mode.cfg file and the ac-gema-mode folder to your AssaultCube s
 Usage
 -----
 
-Ingame press t and type `/showmenu $menuGemaModeTitle`.
+Ingame press t and type `/showGemaModeMenu`.
 
-In order to avoid having to type that command each time you want to open the menu you can also bind it to a key, e.g. if you want to bind it to the key "L" type `bind l [showmenu $menuGemaModeTitle]`. Then you can open the menu by just pressing "L".
+In order to avoid having to type that command each time you want to open the menu you can also bind it to a key, e.g. if you want to bind it to the key "L" type `bind l showGemaModeMenu`. Then you can open the menu by just pressing "L".
