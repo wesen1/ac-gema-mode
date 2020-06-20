@@ -100,6 +100,7 @@ function FunctionParser:getFunctionArguments(_extractedFunction, _docBlockParser
 
     if (matchingPattern) then
       local dataType, argumentName, description = argumentDescription:match(matchingPattern)
+      argumentName = argumentName:sub(1, 1):upper()
       table.insert(arguments, Argument(argumentName, description, "", false))
 
     else
