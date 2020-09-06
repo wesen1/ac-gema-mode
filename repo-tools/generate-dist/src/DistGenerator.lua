@@ -5,9 +5,11 @@
 -- @license MIT
 --
 
+local CommandBlacklistFilter = require "src.LineFilter.Filter.CommandBlacklist"
 local CodeNormalizer = require "src.CodeNormalizer.CodeNormalizer"
 local FileFinder = require "src.FileFinder.FileFinder"
 local IncludeFileResolver = require "src.IncludeFileResolver.IncludeFileResolver"
+local LineFilter = require "src.LineFilter.LineFilter"
 local Object = require "classic"
 local tablex = require "pl.tablex"
 
@@ -41,6 +43,13 @@ DistGenerator.fileFinder = nil
 --
 DistGenerator.includeFileResolver = nil
 
+---
+-- The LineFilter that will be used to filter out unneeded lines
+--
+-- @tfield LineFilter lineFilter
+--
+DistGenerator.lineFilter = nil
+
 
 ---
 -- DistGenerator constructor.
@@ -52,6 +61,7 @@ function DistGenerator:new(_scriptsDirectoryPath)
   self.codeNormalizer = CodeNormalizer()
   self.fileFinder = FileFinder(_scriptsDirectoryPath)
   self.includeFileResolver = IncludeFileResolver(self.fileFinder)
+  self.lineFilter = LineFilter()
 
 end
 
@@ -63,13 +73,20 @@ end
 -- The path to the cubescript file must be relative from the AssaultCube "scripts" directory.
 --
 -- @tparam string _relativeScriptPath The path to a cubescript file to generate a single line from
+-- @tparam bool _ignoreDocs True to ignore all ingame documentation related lines, false otherwise
 --
 -- @treturn string The generated single line representation of the code contained in the cubescript file
 --
-function DistGenerator:generateDistFor(_relativeScriptPath)
+function DistGenerator:generateDistFor(_relativeScriptPath, _ignoreDocs)
 
   local file = self.fileFinder:getFile(_relativeScriptPath)
   local lines = self:parseFile(file)
+
+  if (_ignoreDocs) then
+    self:addDocsCommandBlacklistFilter()
+  end
+
+  lines = self.lineFilter:filterLines(lines)
 
   return table.concat(lines, "")
 
@@ -107,6 +124,29 @@ function DistGenerator:parseFile(_file)
   end
 
   return parsedLines
+
+end
+
+---
+-- Adds a filter to the LineFilter that filters out all ingame documentation related lines.
+--
+function DistGenerator:addDocsCommandBlacklistFilter()
+
+  self.lineFilter:addFilter(CommandBlacklistFilter({
+    "docargument",
+    "docexample",
+    "docfind",
+    "docident",
+    "docinvalid",
+    "dockey",
+    "docref",
+    "docremark",
+    "docsection",
+    "docskip",
+    "docundone",
+    "docvisible",
+    "docwritebaseref"
+  }))
 
 end
 
