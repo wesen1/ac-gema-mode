@@ -59,7 +59,7 @@ local outputFilePath = configuration["outputFilePath"]
 print("Configuration:")
 print("  source directory: " .. sourceDirectoryPath)
 print("  documentation namespace: " .. namespace)
-print("  output file: " .. outputFilePath .. "\n\n");
+print("  output file: " .. outputFilePath .. "\n\n")
 
 
 -- Generate the documentation code from all source files
