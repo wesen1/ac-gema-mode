@@ -111,9 +111,32 @@ function FunctionParser:getFunctionArguments(_extractedFunction, _docBlockParser
   end
 
 
-  local numberOfArguments = self:getHighestUsedArgumentNumber(_extractedFunction:getBody())
-  for i = #arguments + 1, numberOfArguments, 1 do
-    table.insert(arguments, Argument("$arg" .. i, "No description", "", false))
+  -- Find the number of arguments
+  local numberOfArguments
+
+  local numberOfArgumentsConfigPattern = "^@numberOfArguments *(%d+)$"
+  local numberOfArgumentsConfigStrings = _docBlockParser:getLinesContainingTag("numberOfArguments")
+  for i, numberOfArgumentsConfigString in ipairs(numberOfArgumentsConfigStrings) do
+
+    numberOfArguments = numberOfArgumentsConfigString:match(numberOfArgumentsConfigPattern)
+    if (numberOfArguments ~= nil) then
+      numberOfArguments = tonumber(numberOfArguments)
+      if (i < #numberOfArgumentsConfigStrings) then
+        print("Ignoring numberOfArguments after first valid numberOfArguments config")
+      end
+
+      break
+    end
+
+  end
+
+  if (numberOfArguments == nil) then
+    -- No number of arguments setting found, find the highest used argument number
+    numberOfArguments = self:getHighestUsedArgumentNumber(_extractedFunction:getBody())
+    for i = #arguments + 1, numberOfArguments, 1 do
+      table.insert(arguments, Argument("$arg" .. i, "No description", "", false))
+    end
+
   end
 
   return arguments
