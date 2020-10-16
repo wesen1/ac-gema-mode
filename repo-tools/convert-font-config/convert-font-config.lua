@@ -77,11 +77,9 @@ local function generateCubescriptFileFromParsedFontConfig(_parsedFontConfig, _ou
   -- Get sorted symbols
   local specialSymbols = {
     QUOTE = _parsedFontConfig["symbolWidths"]["\""],
-    TAB = _parsedFontConfig["symbolWidths"]["\t"]
   }
 
   _parsedFontConfig["symbolWidths"]["\""] = nil
-  _parsedFontConfig["symbolWidths"]["\t"] = nil
 
   local symbols = {}
   for symbol, _ in pairs(_parsedFontConfig["symbolWidths"]) do
@@ -106,7 +104,7 @@ local function generateCubescriptFileFromParsedFontConfig(_parsedFontConfig, _ou
 
     local width = _parsedFontConfig["symbolWidths"][symbol]
 
-    if (symbol == " " or symbol == "[" or symbol == "]") then
+    if (symbol == " " or symbol == "[" or symbol == "]" or symbol == "\t") then
       -- The symbol is a special character that needs to be enclosed in double quotes
       symbol = "\"" .. symbol .. "\""
     end
