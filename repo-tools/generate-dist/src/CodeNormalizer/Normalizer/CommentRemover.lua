@@ -29,8 +29,17 @@ function CommentRemover:normalize(_lines)
   local normalizedLine
   local normalizedLines = {}
   for _, line in ipairs(_lines) do
-    normalizedLine = line:gsub("//.*$", "")
-    table.insert(normalizedLines, normalizedLine)
+
+    if (line:match("^docremark")) then
+      -- TODO: Fix for now to prevent URLs (e.g. http://example.com) from being interpreted as comments
+      -- In this codebase docremark is never used manually, so there will never be trailing comments after
+      -- these commands
+      table.insert(normalizedLines, line)
+    else
+      normalizedLine = line:gsub("//.*$", "")
+      table.insert(normalizedLines, normalizedLine)
+    end
+
   end
 
   return normalizedLines

@@ -5,6 +5,7 @@
 -- @license MIT
 --
 
+local BaseNormalizer = require "src.CodeNormalizer.Normalizer.Base"
 local CommentRemover = require "src.CodeNormalizer.Normalizer.CommentRemover"
 local EmptyLinesRemover = require "src.CodeNormalizer.Normalizer.EmptyLinesRemover"
 local MultiCommandLineSplitter = require "src.CodeNormalizer.Normalizer.MultiCommandLineSplitter"
@@ -43,6 +44,18 @@ end
 
 
 -- Public Methods
+
+---
+-- Adds a normalizer to this CodeNormalizer.
+--
+-- @tparam Normalizer.Base _normalizer The normalizer to add
+-- @tparam int _position The position inside the list of normalizers to add the new normalizer to
+--
+function CodeNormalizer:addNormalizer(_normalizer, _position)
+  if (_normalizer.is and type(_normalizer.is) == "function" and _normalizer:is(BaseNormalizer)) then
+    table.insert(self.normalizers, _position, _normalizer)
+  end
+end
 
 ---
 -- Normalizes a given set of lines.
