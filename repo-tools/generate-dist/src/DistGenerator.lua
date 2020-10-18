@@ -5,6 +5,7 @@
 -- @license MIT
 --
 
+local ArrayFlattener = require "src.CodeNormalizer.Normalizer.ArrayFlattener"
 local CommandBlacklistFilter = require "src.LineFilter.Filter.CommandBlacklist"
 local CodeNormalizer = require "src.CodeNormalizer.CodeNormalizer"
 local FileFinder = require "src.FileFinder.FileFinder"
@@ -59,6 +60,15 @@ DistGenerator.lineFilter = nil
 function DistGenerator:new(_scriptsDirectoryPath)
 
   self.codeNormalizer = CodeNormalizer()
+  self.codeNormalizer:addNormalizer(
+    ArrayFlattener({
+      "fontTypeCharacterWidthListNames",
+      "fontDefaultCharacterWidths",
+      "fontSerifCharacterWidths",
+      "fontMonoCharacterWidths"
+    }),
+    5
+  )
   self.fileFinder = FileFinder(_scriptsDirectoryPath)
   self.includeFileResolver = IncludeFileResolver(self.fileFinder)
   self.lineFilter = LineFilter()
