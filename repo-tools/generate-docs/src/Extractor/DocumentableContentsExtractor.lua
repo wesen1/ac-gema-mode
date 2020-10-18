@@ -34,8 +34,12 @@ DocumentableContentsExtractor.identifierDefinitionPatterns = {
 
   "\n? *alias +([^ \n]+) *",
   "\n? *const +([^ \n]+) *",
+  "\n? *function +([^ \n]+) *",
+  "\n? *event +([^ \n]+) *",
   "\n? *checkinit +([^ \n]+) *",
-  "\n? *check2init +([^ \n]+) *"
+  "\n? *check2init +([^ \n]+) *",
+  "\n? *cache +([^ \n]+) *",
+  "\n? *option +([^ \n]+) *"
 }
 
 ---
