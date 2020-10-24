@@ -49,7 +49,11 @@ Screenshots
 Installation
 ------------
 
-Copy the ac-gema-mode.cfg file and the ac-gema-mode folder to your AssaultCube scripts folder. Then restart the game.
+Download the ac-gema-mode.cfg file from the latest release and copy it to your AssaultCube scripts directory. Then restart the game.
+The scripts directory is usually located at one of these places:
+
+- Windows (Installed via installer): `<install directory>/scripts` (Default = `C:\Program Files (x86)\AssaultCube`)
+- Linux (Downloaded from AssaultCube website): `<path to unzipped AssaultCube_v1.2.0.2 directory>/scripts`
 
 
 Usage
