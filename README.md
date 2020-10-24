@@ -9,7 +9,16 @@ Description
 
 A gema mode for AssaultCube written in CubeScript. The mode can be used online and offline.
 
-Differences to playing on a gema server are:
+### Features
+
+* Easy to use
+* Customizable
+* Shows map statistics and score messages on gema maps
+* Saves your best score times per weapon per map
+* Allows you to race against a target time
+
+
+### Differences to playing on a gema server
 
 * The item respawn rate is lower (especially health/armor/grenade packs do not work the same way)
 * No flag reset
@@ -22,6 +31,19 @@ You should try to find a server that allows you to:
 
 * vote a map with a time limit of 60 minutes (`/ctf <map name> 60`)
 * disable autoteam (`/autoteam 0`)
+
+
+Screenshots
+-----------
+
+### Main menu and score message
+![Main menu and score message](readme/screenshots/main-menu.jpg?raw=true "Main menu and score message")
+
+### Weapon records
+![Weapon records](readme/screenshots/weapon-records.jpg?raw=true "Weapon records")
+
+### Map Statistics
+![Map Statistics on loading a gema map](readme/screenshots/map-statistics.jpg?raw=true "Map Statistics on loading a gema map")
 
 
 Installation
