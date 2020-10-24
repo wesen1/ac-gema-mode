@@ -65,7 +65,8 @@ function DistGenerator:new(_scriptsDirectoryPath)
       "fontTypeCharacterWidthListNames",
       "fontDefaultCharacterWidths",
       "fontSerifCharacterWidths",
-      "fontMonoCharacterWidths"
+      "fontMonoCharacterWidths",
+      "menuAboutGemaDescriptionText"
     }),
     5
   )
