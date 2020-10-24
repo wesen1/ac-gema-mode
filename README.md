@@ -22,7 +22,7 @@ A gema mode for AssaultCube written in CubeScript. The mode can be used online a
 
 * The item respawn rate is lower (especially health/armor/grenade packs do not work the same way)
 * No flag reset
-* /gonext not usable (if playing offline)
+* `/gonext` not usable (if playing offline)
 
 
 ### Tips for playing on non gema servers ###
