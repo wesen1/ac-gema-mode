@@ -12,11 +12,17 @@ fi
 generateDistPath="$absoluteScriptCallPath/generate-dist"
 scriptsDirectoryPath="$absoluteScriptCallPath/../"
 
-luaCommand="lua generate-dist.lua --scriptsDirectoryPath $scriptsDirectoryPath --entryPointScriptPath ac-gema-mode.cfg --outputFilePath $scriptsDirectoryPath/ac-gema-mode-dist.cfg"
 
-if [ "$#" -gt 0 -a "$1" == "--ignoreDocs" ]; then
-  luaCommand="$luaCommand --ignoreDocs"
+if [ ! -d "$scriptsDirectoryPath/dist" ]; then
+  mkdir "$scriptsDirectoryPath/dist"
 fi
 
+generateDistCommand="lua generate-dist.lua --scriptsDirectoryPath $scriptsDirectoryPath --entryPointScriptPath ac-gema-mode.cfg"
+
+generateDistWithDocsCommand="$generateDistCommand --outputFilePath $scriptsDirectoryPath/dist/ac-gema-mode-dist-with-docs.cfg"
+generateDistWithoutDocsCommand="$generateDistCommand --outputFilePath $scriptsDirectoryPath/dist/ac-gema-mode-dist.cfg --ignoreDocs"
+
+
 cd "$generateDistPath"
-$luaCommand
+$generateDistWithDocsCommand
+$generateDistWithoutDocsCommand
