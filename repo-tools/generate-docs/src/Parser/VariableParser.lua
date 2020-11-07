@@ -53,7 +53,7 @@ function VariableParser:getDescriptions(_docBlockParser)
   local lineNumber, firstSentenceEnd
   for i, line in ipairs(linesWithoutTags) do
 
-    firstSentenceEnd = line:find("%.")
+    firstSentenceEnd = line:find("%.$")
     if (firstSentenceEnd) then
       lineNumber = i
       break
