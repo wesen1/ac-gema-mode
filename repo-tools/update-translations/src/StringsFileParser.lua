@@ -89,7 +89,7 @@ function StringsFileParser:parse(_stringsFilePath)
         table.insert(self.stringAliasNames, currentStringAlias)
         table.insert(self.stringAliasSections, currentSectionOutputLines)
         table.insert(self.sections, self.SECTION_TYPE_STRING_ALIAS)
-        doCheckStringAliasNestingLevel = (line:match("^const [^ ]+ +%[") ~= nil)
+        doCheckStringAliasNestingLevel = (line:match("^const [^ ]+ +%[") ~= nil or line:match("^const [^ ]+ +%(format +%[") ~= nil)
         currentStringAliasNestingLevel = 0
       end
     end
