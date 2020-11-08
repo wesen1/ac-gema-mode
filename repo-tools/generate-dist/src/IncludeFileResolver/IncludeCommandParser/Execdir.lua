@@ -22,7 +22,7 @@ local ExecdirIncludeCommandParser = BaseIncludeCommandParser:extend()
 -- @tparam FileFinder _fileFinder The FileFinder to use to find included File's
 --
 function ExecdirIncludeCommandParser:new(_fileFinder)
-  BaseIncludeCommandParser.new(self, _fileFinder, "execdir +\"scripts/([^\"]+)\";")
+  BaseIncludeCommandParser.new(self, _fileFinder, "execdir +\"scripts/([^\"]+)\";?")
 end
 
 

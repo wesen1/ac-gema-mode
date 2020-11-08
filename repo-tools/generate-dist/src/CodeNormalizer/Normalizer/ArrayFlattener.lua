@@ -54,7 +54,7 @@ function ArrayFlattener:normalize(_lines)
 
     if (currentTargetArrayLines) then
       table.insert(currentTargetArrayLines, line)
-      if (line:match("^]$")) then
+      if (line:match("^]")) then
         table.insert(normalizedLines, table.concat(currentTargetArrayLines, " "))
         currentTargetArrayLines = nil
       end
@@ -62,7 +62,8 @@ function ArrayFlattener:normalize(_lines)
     else
 
       for _, arrayName in ipairs(self.arrayNames) do
-        if (line:match("^.* +" .. arrayName .. " +%[$")) then
+        if (line:match("^.* +" .. arrayName .. " +%[$") or
+            line:match("^.* +" .. arrayName .. " +%(format +%[$")) then
           currentTargetArrayLines = { line }
         end
       end
