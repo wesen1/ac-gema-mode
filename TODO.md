@@ -98,7 +98,7 @@ Distribution
 
 ### Dist ###
 
-* Replaces $<constant> with the value of the constant for performance boosts
+* Replaces `$<constant>` with the value of the constant for performance boosts
 
 * Add option to minify code (Replace variable names by auto generated names)
 
@@ -110,7 +110,7 @@ Code
 
 * Add :: before each variable name to "hide" them ingame
 * Make variable and function names more specific (since all variables and functions in the whole game share the same namespace)
-  -> "::" + <project title> + "_" + <function name> + "_" + <alias name>
+  -> `"::" + <project title> + "_" + <function name> + "_" + <alias name>`
   => Should be done by dist script, mode A = dist, mode B = dist.min
 
 
@@ -118,4 +118,4 @@ Other
 -----
 
 * Find best file mode
-* Find hardcoded colors: grep -r "(c [^$]" ac-gema-mode
+* Find hardcoded colors: `grep -r "(c [^$]" ac-gema-mode`
