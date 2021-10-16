@@ -1,0 +1,21 @@
+
+
+Gema Mode activatability:
+
+
+| Description                       | Expected result           |
+|-----------------------------------|---------------------------|
+| Load non gema map in non ctf mode | Gema mode not activatable |
+| Load gema map in non ctf mode     | Gema mode not activatable |
+| View demo of gema map in ctf mode | Gema mode not activatable |
+| Load gema map in ctf mode         | Gema mode activatable     |
+
+
+Auto activate gema mode:
+
+| Description                       | Expected result           |
+|-----------------------------------|---------------------------|
+| Load non gema map in non ctf mode | Gema mode not activating  |
+| Load gema map in non ctf mode     | Gema mode not activating  |
+| View demo of gema map in ctf mode | Gema mode not activating  |
+| Load gema map in ctf mode         | Gema mode activating      |
